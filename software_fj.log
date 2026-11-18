@@ -1,0 +1,113 @@
+2026-11-09 20:52:08,157 | INFO | Cliente registrado: Laura Gómez.
+2026-11-09 20:52:08,159 | INFO | Cliente registrado: Carlos Pérez.
+2026-11-09 20:52:08,160 | ERROR | Error en registro de cliente inválido.
+Traceback (most recent call last):
+  File "C:\Users\Administrado\Downloads\main.py", line 406, in ejecutar_pruebas
+    Cliente("Lu", "ABC", "correo_invalido", "123")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrado\Downloads\main.py", line 90, in __init__
+    self.validar()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Administrado\Downloads\main.py", line 111, in validar
+    raise ErrorValidacion("El nombre debe tener al menos 3 caracteres.")
+ErrorValidacion: El nombre debe tener al menos 3 caracteres.
+2026-11-09 20:52:08,163 | ERROR | Intento de documento duplicado.
+Traceback (most recent call last):
+  File "C:\Users\Administrado\Downloads\main.py", line 413, in ejecutar_pruebas
+    sistema.registrar_cliente(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        Cliente("Laura Gómez Dos", "10203040", "laura2@email.com", "3001112233")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Administrado\Downloads\main.py", line 347, in registrar_cliente
+    raise ErrorValidacion("Ya existe un cliente con ese documento.")
+ErrorValidacion: Ya existe un cliente con ese documento.
+2026-11-09 20:52:08,309 | INFO | Servicio agregado: Sala de reuniones 1.
+2026-11-09 20:52:08,309 | INFO | Servicio agregado: Proyector HD.
+2026-11-09 20:52:08,309 | INFO | Servicio agregado: Asesoría de software.
+2026-11-09 20:52:08,309 | ERROR | Intento de creación de servicio incorrecto.
+Traceback (most recent call last):
+  File "C:\Users\Administrado\Downloads\main.py", line 434, in ejecutar_pruebas
+    sistema.agregar_servicio("Servicio no válido")
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrado\Downloads\main.py", line 354, in agregar_servicio
+    raise ErrorValidacion("El objeto enviado no es un servicio válido.")
+ErrorValidacion: El objeto enviado no es un servicio válido.
+2026-11-09 20:52:08,310 | INFO | Reserva ca2fa657 creada para el cliente Laura Gómez.
+2026-11-09 20:52:08,310 | INFO | Reserva ca2fa657 confirmada.
+2026-11-09 20:52:08,311 | INFO | Reserva ca2fa657 procesada por $107100.00.
+2026-11-09 20:52:08,311 | INFO | Reserva 164f5386 creada para el cliente Carlos Pérez.
+2026-11-09 20:52:08,311 | INFO | Reserva 164f5386 confirmada.
+2026-11-09 20:52:08,311 | ERROR | Intento de reserva con parámetros incorrectos.
+Traceback (most recent call last):
+  File "C:\Users\Administrado\Downloads\main.py", line 461, in ejecutar_pruebas
+    sistema.crear_reserva(
+    ~~~~~~~~~~~~~~~~~~~~~^
+        cliente1.documento, sala.id, 1,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        parametros={"personas": 30}
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Administrado\Downloads\main.py", line 366, in crear_reserva
+    reserva = Reserva(cliente, servicio, duracion, **parametros)
+  File "C:\Users\Administrado\Downloads\main.py", line 289, in __init__
+    self.costo = servicio.calcular_costo(
+                 ~~~~~~~~~~~~~~~~~~~~~~~^
+        self.duracion, impuesto=impuesto, descuento=descuento,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        **self.parametros
+        ^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Administrado\Downloads\main.py", line 184, in calcular_costo
+    self.validar_parametros(**parametros)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\Administrado\Downloads\main.py", line 211, in validar_parametros
+    raise ErrorValidacion(
+        f"La cantidad de personas debe estar entre 1 y {self.capacidad}."
+    )
+ErrorValidacion: La cantidad de personas debe estar entre 1 y 12.
+2026-11-09 20:52:08,313 | ERROR | Intento de reserva para cliente inexistente.
+Traceback (most recent call last):
+  File "C:\Users\Administrado\Downloads\main.py", line 471, in ejecutar_pruebas
+    sistema.crear_reserva("99999999", sala.id, 1,
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+                          parametros={"personas": 2})
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrado\Downloads\main.py", line 363, in crear_reserva
+    raise ErrorNoEncontrado("No se encontró el cliente solicitado.")
+ErrorNoEncontrado: No se encontró el cliente solicitado.
+2026-11-09 20:52:08,335 | INFO | Reserva d1b0883c creada para el cliente Laura Gómez.
+2026-11-09 20:52:08,335 | INFO | Reserva d1b0883c confirmada.
+2026-11-09 20:52:08,337 | INFO | Reserva 6a25cc9a creada para el cliente Carlos Pérez.
+2026-11-09 20:52:08,338 | ERROR | Intento de procesar reserva sin confirmar.
+Traceback (most recent call last):
+  File "C:\Users\Administrado\Downloads\main.py", line 491, in ejecutar_pruebas
+    reserva4.procesar()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Administrado\Downloads\main.py", line 322, in procesar
+    raise ErrorEstadoReserva("La reserva debe estar confirmada para procesarse.")
+ErrorEstadoReserva: La reserva debe estar confirmada para procesarse.
+2026-11-09 20:52:08,338 | WARNING | Reserva 6a25cc9a cancelada.
+2026-11-09 20:52:08,338 | ERROR | Error en cálculo de costo.
+Traceback (most recent call last):
+  File "C:\Users\Administrado\Downloads\main.py", line 502, in ejecutar_pruebas
+    sala.calcular_costo(2, descuento=150, impuesto=19,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        personas=4)
+                        ^^^^^^^^^^^
+  File "C:\Users\Administrado\Downloads\main.py", line 182, in calcular_costo
+    raise ErrorCalculo("El impuesto y el descuento deben estar entre 0 y 100.")
+ErrorCalculo: El impuesto y el descuento deben estar entre 0 y 100.
+2026-11-09 20:52:08,342 | INFO | Finalizó la demostración automática.
+2026-11-09 20:52:41,328 | INFO | Cliente registrado: omar morales.
+2026-11-09 20:53:13,872 | INFO | Servicio agregado: sala 01.
+2026-11-09 20:53:43,808 | ERROR | Operación no completada: could not convert string to float: '2 dias'
+Traceback (most recent call last):
+  File "C:\Users\Administrado\Downloads\main.py", line 604, in ejecutar_menu
+    duracion = float(input("Duración (horas/días): "))
+               ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: '2 dias'
+2026-11-09 20:54:11,104 | INFO | Servicio agregado: pc 01.
